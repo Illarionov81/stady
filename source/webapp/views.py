@@ -1,21 +1,31 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic.base import View, TemplateView
 
 from webapp.forms import ArticleForm
 from webapp.models import Article
 
 
-def index_view(request):
-    articles = Article.objects.all()
-    context = {
-        'articles': articles
-    }
-    return render(request, 'index.html', context)
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        is_admin = self.request.GET.get('is_admin', None)
+        if is_admin:
+            articles = Article.objects.all()
+        else:
+            articles = Article.objects.filter(status='moderated')
+        context = {
+            'articles': articles
+        }
+        return render(request, 'index.html', context)
 
 
-def article_view(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    return render(request, 'article.html', context={'article': article})
+class ArticleView(TemplateView):
+    template_name = 'article.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article'] = get_object_or_404(Article, pk=kwargs['pk'])
+        return context
 
 
 def article_create_view(request, *args, **kwargs):
@@ -28,8 +38,11 @@ def article_create_view(request, *args, **kwargs):
             article = Article.objects.create(
                 title=form.cleaned_data['title'],
                 author=form.cleaned_data['author'],
-                text=form.cleaned_data['text']
+                text=form.cleaned_data['text'],
+                status=form.cleaned_data['status']
             )
+            tags=form.cleaned_data['tags']
+            article.tags.set(tags)
             return redirect('article', pk=article.pk)
         else:
             return render(request, 'article_create.html', context={'form': form})
