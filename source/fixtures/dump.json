@@ -4,10 +4,87 @@
   "pk": 1,
   "fields": {
     "title": "First article",
-    "text": "Statr learn django again",
+    "text": " Statr learn django again updated",
     "author": "Me",
     "created_at": "2021-02-04T07:32:12.286Z",
-    "updated_at": "2021-02-04T07:32:12.286Z"
+    "updated_at": "2021-02-04T11:00:37.438Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 2,
+  "fields": {
+    "title": "second",
+    "text": "sekond article",
+    "author": "Unknown",
+    "created_at": "2021-02-04T07:47:05.485Z",
+    "updated_at": "2021-02-04T07:47:05.485Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 3,
+  "fields": {
+    "title": "\u0421\u043f\u043e\u0440\u0442",
+    "text": "jljnfzljfvzljnvlzjdfnvjzn\r\nzdfvlkzjnv zjv\r\nzdfjvzkdfjbzkj",
+    "author": "Me",
+    "created_at": "2021-02-04T08:00:18.446Z",
+    "updated_at": "2021-02-04T08:00:18.446Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 4,
+  "fields": {
+    "title": "Therd",
+    "text": "jxcnv  jzdf;j ;zjdf ;zj z;djf\r\nz;dkjfnbn\r\ndfjznd;jnb;",
+    "author": "\u042f",
+    "created_at": "2021-02-04T08:33:40.378Z",
+    "updated_at": "2021-02-04T08:33:40.378Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 5,
+  "fields": {
+    "title": "Serfing",
+    "text": ",kjn",
+    "author": "Me",
+    "created_at": "2021-02-04T08:54:20.451Z",
+    "updated_at": "2021-02-04T08:54:20.451Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 6,
+  "fields": {
+    "title": "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438",
+    "text": " fzf",
+    "author": "me again",
+    "created_at": "2021-02-04T08:58:52.894Z",
+    "updated_at": "2021-02-04T08:58:52.894Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 10,
+  "fields": {
+    "title": "sfdvs",
+    "text": "form",
+    "author": "zf zd xgbsb",
+    "created_at": "2021-02-04T11:29:33.290Z",
+    "updated_at": "2021-02-04T12:15:55.016Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 11,
+  "fields": {
+    "title": "\u0421\u043f\u043e\u0440\u0442",
+    "text": "mnj;;zfjknvnffffffff\r\nfffffffffffffffffffffffffffff\r\nvc",
+    "author": "Me",
+    "created_at": "2021-02-04T12:20:57.282Z",
+    "updated_at": "2021-02-04T12:20:57.282Z"
   }
 }
 ]
