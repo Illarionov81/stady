@@ -1,0 +1,13 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 1,
+  "fields": {
+    "title": "First article",
+    "text": "Statr learn django again",
+    "author": "Me",
+    "created_at": "2021-02-04T07:32:12.286Z",
+    "updated_at": "2021-02-04T07:32:12.286Z"
+  }
+}
+]
