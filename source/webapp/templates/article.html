@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <title>View</title>
 </head>
 <body>
-    <p><a href="/">На главную</a></p>
+    <p><a href="{% url 'index' %}">На главную</a></p>
     <h1>Article:</h1>
     <h2>{{ article.title }}</h2>
     <p>{{ article.text }}</p>

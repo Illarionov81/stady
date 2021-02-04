@@ -7,9 +7,9 @@
 <body>
 
 <h1>Create Article</h1>
-<p><a href="/">На главную</a></p>
+<p><a href="{% url 'index' %}">На главную</a></p>
 
-<form action="/articles/add/" method="post">
+<form action="{% url 'article_add' %}" method="post">
     {% csrf_token %}
    
     <label>Title:</label><br/>

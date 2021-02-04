@@ -22,7 +22,7 @@ from webapp.views import index_view, article_create_view, article_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index_view),
-    path('articles/add/', article_create_view),
-    path('article/<int:pk>/', article_view)
+    path('', index_view, name='index'),
+    path('articles/add/', article_create_view, name='article_add'),
+    path('article/<int:pk>/', article_view, name='article')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

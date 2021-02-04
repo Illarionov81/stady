@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 
 from webapp.models import Article
 
@@ -13,9 +13,8 @@ def index_view(request):
 
 
 def article_view(request, pk):
-    article = Article.objects.get(pk=pk)
-    context = {'article': article}
-    return render(request, 'article_view.html', context)
+    article = get_object_or_404(Article, pk=pk)
+    return render(request, 'article.html', context={'article': article})
 
 
 def article_create_view(request):
@@ -27,4 +26,4 @@ def article_create_view(request):
         author = request.POST.get('author')
         article = Article.objects.create(title=title, text=text, author=author)
 
-        return HttpResponseRedirect(f'/article/{article.pk}/')
+        return redirect('article', pk=article.pk)
