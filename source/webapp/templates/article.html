@@ -1,15 +1,14 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>View</title>
-</head>
-<body>
-    <p><a href="{% url 'index' %}">На главную</a></p>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'article_add' %}">Add Article</a></li>
+    <li><a href="{% url 'article_update'  article.pk %}">Update Article</a></li>
+    <li><a href="{% url 'article_delete'  article.pk %}">Delete Article</a></li>
+{% endblock %}
+{% block content %}
     <h1>Article:</h1>
     <h2>{{ article.title }}</h2>
     <p>{{ article.text }}</p>
     <p>By: {{ article.author }}</p>
-</body>
-</html>
+{% endblock %}

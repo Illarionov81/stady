@@ -1,21 +1,15 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-</head>
-<body>
+{% block menu %}
+    <li><a href="{% url 'article_add' %}">Add Article</a></li>
+{% endblock%}
+{% block content %}
 <h1>Articles</h1>
-    <p><a href="{% url 'article_add' %}">Добавить</a></p>
     {% for article in articles %}
         <h2>{{ article.title }}</h2>
         <p><a href="{% url 'article' article.pk %}">Подробнее...</a></p>
+        <p><a href="{% url 'article_update' article.pk %}">Update</a></p>
+        <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>
         <hr>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

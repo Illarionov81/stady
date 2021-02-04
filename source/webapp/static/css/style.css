@@ -2,10 +2,57 @@ body {
     font-family: Arial, sans-serif;
     background: rgb(222, 240, 204);
     color: #222222;
+    margin-top: 150px;
+
 }
 .container {
-            margin: 0 auto;
-            width: 100%;
-            max-width: 900px;
-            text-align: center;
-        }
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.navbar {
+    display: block;
+    background: #6a7dff;
+    position:fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 7px 30px;
+}
+.​ menu {
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    color: #fffee8;
+}
+.​ menu li {
+    display: inline-block;
+}
+
+.menu a {
+    display: inline-block;
+    text-decoration: white;
+    color: inherit;
+    padding: 5px 15px;
+}
+
+.menu a:hover {
+    color: #ffc122;
+    text-decoration: underline;
+}
+
+.form-error {
+    color: red;
+    font-size: 12px;
+    margin: 5px 0 0 0
+}
+
+.field-error {
+    border: solid 1px red;
+    box-shadow: red 0 0 3px;
+}
