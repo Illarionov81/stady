@@ -18,6 +18,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from webapp.views import index_view, article_create_view, article_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index_view),
+    path('articles/add/', article_create_view),
+    path('article/<int:pk>/', article_view)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
