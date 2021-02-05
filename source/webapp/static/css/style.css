@@ -9,7 +9,6 @@ body {
     margin: 0 auto;
     width: 100%;
     max-width: 900px;
-    text-align: center;
 }
 
 .navbar {
@@ -22,7 +21,7 @@ body {
     box-sizing: border-box;
     padding: 7px 30px;
 }
-.​ menu {
+.menu {
     font-size: 14px;
     line-height: 1;
     padding: 0;
@@ -30,7 +29,7 @@ body {
     display: inline-block;
     color: #fffee8;
 }
-.​ menu li {
+.menu li {
     display: inline-block;
 }
 

@@ -54,7 +54,8 @@ def article_update_view(request, pk):
         form = ArticleForm(initial={
             'title': article.title,
             'text': article.text,
-            'author': article.author
+            'author': article.author,
+            'status': article.status
         })
         return render(request, 'update.html', context={'form': form, 'article': article})
     elif request.method == 'POST':
@@ -63,6 +64,7 @@ def article_update_view(request, pk):
             article.title = form.cleaned_data['title']
             article.text = form.cleaned_data['text']
             article.author = form.cleaned_data['author']
+            article.status = form.cleaned_data['status']
             article.save()
             return redirect('article', pk=article.pk)
         else:
