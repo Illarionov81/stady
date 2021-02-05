@@ -1,8 +1,8 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View, TemplateView
+from django.utils.timezone import make_naive
 
-from webapp.forms import ArticleForm
+from webapp.forms import ArticleForm, BROWSER_DATETIME_FORMAT
 from webapp.models import Article
 
 
@@ -39,7 +39,8 @@ def article_create_view(request, *args, **kwargs):
                 title=form.cleaned_data['title'],
                 author=form.cleaned_data['author'],
                 text=form.cleaned_data['text'],
-                status=form.cleaned_data['status']
+                status=form.cleaned_data['status'],
+                publish_at=form.cleaned_data['publish_at']
             )
             tags=form.cleaned_data['tags']
             article.tags.set(tags)
@@ -55,7 +56,8 @@ def article_update_view(request, pk):
             'title': article.title,
             'text': article.text,
             'author': article.author,
-            'status': article.status
+            'status': article.status,
+            'publish_at': make_naive(article.publish_at).strftime(BROWSER_DATETIME_FORMAT)
         })
         return render(request, 'update.html', context={'form': form, 'article': article})
     elif request.method == 'POST':
@@ -65,6 +67,7 @@ def article_update_view(request, pk):
             article.text = form.cleaned_data['text']
             article.author = form.cleaned_data['author']
             article.status = form.cleaned_data['status']
+            article.publish_at = form.cleaned_data['publish_at']
             article.save()
             return redirect('article', pk=article.pk)
         else:

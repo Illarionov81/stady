@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 STATUS_CHOICES = [
     ('new', 'Не модерировано'),
@@ -15,6 +17,7 @@ class Article(models.Model):
     tags = models.ManyToManyField('webapp.Tag', related_name='articles', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
+    publish_at = models.DateTimeField(verbose_name='Время публикации', blank=True, default=timezone.now)
 
     def __str__(self):
         return "{}. {}".format(self.pk, self.title)
