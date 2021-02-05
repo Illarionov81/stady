@@ -9,7 +9,18 @@
 {% block content %}
     <h1>Article:</h1>
     <h2>{{ article.pk }}. {{ article.title }} Статус: {{ article.status }}</h2>
-    <p>Автор: {{ article.author }} | Дата создания:{{ article.created_at|date:'d-m-Y H:i' }} | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
+    <p>Автор: {{ article.author }} | Дата создания:{{ article.created_at|date:'d-m-Y H:i' }}
+        | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
     <p>{{ article.text }}</p>
     <p>Таги: {% for tag in article.tags.all %} {{ tag }}{% if not forloop.last %},{% endif %}{% endfor %}</p>
+    <h3>Комментарии:</h3>
+    {% for comment in article.comments.all %}
+        <div>
+            <h4>{{ comment.author }} ({{ comment.created_at }})</h4>
+            <div class="pre">{{ comment.text }}</div>
+        </div>
+    {% empty %}
+        <p>Нет комментариев</p>
+    {% endfor %}
+
 {% endblock %}

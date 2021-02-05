@@ -18,13 +18,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from webapp.views import IndexView, article_create_view, ArticleView, article_update_view, article_delete_view
+from webapp.views import IndexView, ArticleCreateView, ArticleView, ArticleUpdateView, article_delete_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('articles/add/', article_create_view, name='article_add'),
+    path('articles/add/', ArticleCreateView.as_view(), name='article_add'),
     path('article/<int:pk>/', ArticleView.as_view(), name='article'),
-    path('article/<int:pk>/edit/', article_update_view, name='article_update'),
+    path('article/<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_update'),
     path('article/<int:pk>/delete', article_delete_view, name='article_delete')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
