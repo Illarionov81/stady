@@ -12,7 +12,7 @@ STATUS_CHOICES = [
 
 class Article(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False, verbose_name='Заголовок',
-                             validators=MinLengthValidator[10])
+                             validators=[MinLengthValidator(10)])
     text = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Текст')
     author = models.CharField(max_length=40, null=False, blank=False, default='Unknown', verbose_name='Автор')
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='new', verbose_name='Модерация')
@@ -20,6 +20,14 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     publish_at = models.DateTimeField(verbose_name='Время публикации', blank=True, default=timezone.now)
+
+    def save(self, **kwargs):
+        if not self.publish_at:
+            if not self.pk:
+                self.publish_at = timezone.now()
+            else:
+                self.publish_at = Article.objects.get(pk=self.pk).publish_at
+        super().save(**kwargs)
 
     def __str__(self):
         return "{}. {}".format(self.pk, self.title)
@@ -43,7 +51,6 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Коментарий'
         verbose_name_plural = 'Коментарии'
-
 
 
 class Tag(models.Model):

@@ -13,16 +13,16 @@ def at_least_10(string):
         raise ValidationError('This value is too short!')
 
 
-class ArticleForm(forms.Form):
-    title = forms.CharField(max_length=200, required=True, label='Title', validators=[at_least_10])
-    author = forms.CharField(max_length=40, required=True, label='Author')
-    status = forms.ChoiceField(choices=STATUS_CHOICES, initial=default_status, label='Модерация')
-    text = forms.CharField(max_length=3000, required=True, label='Text', widget=widgets.Textarea)
-    tags = forms.ModelMultipleChoiceField(required=False, label="Тэги", queryset=Tag.objects.all())
+class ArticleForm(forms.ModelForm):
     publish_at = forms.DateTimeField(required=False, label='Время публикации',
                                      input_formats=['%Y-%m-%d', '%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S',
                                                     '%Y-%m-%dT%H:%M:%S', BROWSER_DATETIME_FORMAT],
                                      widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+
+    class Meta:
+        model = Article
+        fields = ['title', 'text', 'author', 'status', 'publish_at', 'tags']
+        # widgets = {'publish_at': forms.DateTimeInput(attrs={'type': 'datetime-local'})}
 
     def clean(self):
         cleaned_data = super().clean()

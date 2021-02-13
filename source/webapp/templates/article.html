@@ -12,7 +12,14 @@
     <p>Автор: {{ article.author }} | Дата создания:{{ article.created_at|date:'d-m-Y H:i' }}
         | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
     <p>{{ article.text }}</p>
-    <p>Таги: {% for tag in article.tags.all %} {{ tag }}{% if not forloop.last %},{% endif %}{% endfor %}</p>
+    <p>Тэги:
+        {% for tag in article.tags.all %}
+            {{ tag }}
+            {% if not forloop.last %},{% endif %}
+        {% empty %}
+            <p>Тэгов нет.</p>
+        {% endfor %}
+    </p>
     <h3>Комментарии:</h3>
     {% for comment in article.comments.all %}
         <div>
