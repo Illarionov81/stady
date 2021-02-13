@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
 from django.views.generic.base import View, TemplateView
 from django.utils.timezone import make_naive
 
@@ -6,17 +7,19 @@ from webapp.forms import ArticleForm, BROWSER_DATETIME_FORMAT
 from webapp.models import Article
 
 
-class IndexView(View):
-    def get(self, request, *args, **kwargs):
+class IndexView(ListView):
+    template_name = 'index.html'
+    context_object_name = 'articles'
+
+    def get_queryset(self):
+        data = Article.objects.all()
         is_admin = self.request.GET.get('is_admin', None)
-        if is_admin:
-            articles = Article.objects.all()
-        else:
-            articles = Article.objects.filter(status='moderated')
-        context = {
-            'articles': articles
-        }
-        return render(request, 'index.html', context)
+        if not is_admin:
+            data = data.filter(status='moderated')
+        search = self.request.GET.get('search')
+        if search:
+            data = data.filter(title__icontains=search)
+        return data.order_by('-created_at')
 
 
 class ArticleView(TemplateView):
