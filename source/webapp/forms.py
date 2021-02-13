@@ -5,7 +5,11 @@ from django.forms import widgets
 from webapp.models import Tag, Article, STATUS_CHOICES
 
 default_status = STATUS_CHOICES[0][0]
-BROWSER_DATETIME_FORMAT = '%Y-%m-%dT%H:%M'
+BROWSER_DATETIME_FORMAT = '%d-%m-%Y %H:%M'
+
+
+class XDatepickerWidget(forms.TextInput):
+    template_name = 'widgets/xdatepicker_widget.html'
 
 
 def at_least_10(string):
@@ -17,7 +21,7 @@ class ArticleForm(forms.ModelForm):
     publish_at = forms.DateTimeField(required=False, label='Время публикации',
                                      input_formats=['%Y-%m-%d', '%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S',
                                                     '%Y-%m-%dT%H:%M:%S', BROWSER_DATETIME_FORMAT],
-                                     widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}))
+                                     widget=XDatepickerWidget)
 
     class Meta:
         model = Article

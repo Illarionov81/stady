@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, cmaximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Blog{% endblock %}​</title>
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -22,5 +25,12 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    <script src="{% static "js/api_client.js" %}"></script>
+    {% block scripts %}{% endblock %}
+
+    <p class="version">{% if version %}{{ version }}{% endif %}</p>
 </body>
 </html>
