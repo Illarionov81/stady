@@ -19,8 +19,17 @@
             {% block menu %}
             {% endblock %}
         </ul>
+        {% block search %}
+            <div class="search-form">
+                <form action="{% url 'index' %}" method="GET" >
+                    {{ search_form.search }}
+                    <input type="submit" value="Поиск">
+                </form>
+            </div>
+        {% endblock %}
     </div>
 </nav>
+
     <div class="container">
         {% block content %}
         {% endblock %}
