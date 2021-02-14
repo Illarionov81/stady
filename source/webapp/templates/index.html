@@ -6,17 +6,19 @@
 {% endblock%}
 
 {% block content %}
-<h1>My First Blog!</h1>
-{#    {% if is_paginated %}#}
-{#        {% include 'partial/pagination.html' %}#}
-{#    {% endif %}#}
-    {% for article in articles %}
-        <h3><a href="{% url 'article' article.pk %}">{{ article.pk }}</a> {{ article.title }}</h3>
-        <p>статус: ({{ article.status }} | {{ article.get_status_display }})</p>
-        <p>{{ article.author }} | {{ article.created_at|date:'d-m-Y H:i'  }} | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
-        <p>{{ article.text }}</p>
-        <p><a href="{% url 'article_update' article.pk %}">Update</a></p>
-        <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>
-        <hr>
-    {% endfor %}
+    <div class="box">
+    <h1>My First Blog!</h1>
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+        {% for article in articles %}
+            <h3><a href="{% url 'article' article.pk %}">{{ article.pk }}</a> {{ article.title }}</h3>
+            <p>статус: ({{ article.status }} | {{ article.get_status_display }})</p>
+            <p>{{ article.author }} | {{ article.created_at|date:'d-m-Y H:i'  }} | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
+            <p>{{ article.text }}</p>
+            <p><a href="{% url 'article_update' article.pk %}">Update</a></p>
+            <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>
+            <hr>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -7,27 +7,35 @@
     <li><a href="{% url 'article_delete'  article.pk %}">Delete Article</a></li>
 {% endblock %}
 {% block content %}
-    <h1>Article:</h1>
-    <h2>{{ article.pk }}. {{ article.title }} Статус: {{ article.status }}</h2>
-    <p>Автор: {{ article.author }} | Дата создания:{{ article.created_at|date:'d-m-Y H:i' }}
-        | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
-    <p>{{ article.text }}</p>
-    <p>Тэги:
-        {% for tag in article.tags.all %}
-            {{ tag }}
-            {% if not forloop.last %},{% endif %}
+    <div class="box">
+        <h1>Article:</h1>
+        <h2>{{ article.pk }}. {{ article.title }} Статус: {{ article.status }}</h2>
+        <p>Автор: {{ article.author }} | Дата создания:{{ article.created_at|date:'d-m-Y H:i' }}
+            | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
+        <p>{{ article.text }}</p>
+        <p>Тэги:
+            {% for tag in article.tags.all %}
+                {{ tag }}
+                {% if not forloop.last %},{% endif %}
+            {% empty %}
+                <p>Тэгов нет.</p>
+            {% endfor %}
+        </p>
+        <hr>
+        <h3>Комментарии:</h3>
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+        {% for comment in article.comments.all %}
+            <div class="box">
+                <div>
+                    <h4>{{ comment.author }} ({{ comment.created_at }})</h4>
+                    <div class="pre">{{ comment.text }}</div>
+                </div>
+            </div>
         {% empty %}
-            <p>Тэгов нет.</p>
+            <p>Нет комментариев</p
         {% endfor %}
-    </p>
-    <h3>Комментарии:</h3>
-    {% for comment in article.comments.all %}
-        <div>
-            <h4>{{ comment.author }} ({{ comment.created_at }})</h4>
-            <div class="pre">{{ comment.text }}</div>
-        </div>
-    {% empty %}
-        <p>Нет комментариев</p>
-    {% endfor %}
 
+    </div>
 {% endblock %}

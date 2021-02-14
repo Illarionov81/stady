@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
@@ -36,11 +37,27 @@ class IndexView(ListView):
 
 class ArticleView(TemplateView):
     template_name = 'article.html'
+    paginete_comments_by = 2
+    paginete_comments_orphans = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['article'] = get_object_or_404(Article, pk=kwargs['pk'])
+        article = get_object_or_404(Article, pk=kwargs['pk'])
+        comments, page, is_paginated = self.paginater_comments(article)
+
+        context['article'] = article
+        context['comments'] = comments
+        context['page_obj'] = page
+        context['is_paginated'] = is_paginated
         return context
+
+    def paginater_comments(self, article):
+        comments = article.comments.all().order_by('-created_at')
+        if comments.count() > 0:
+            paginator = Paginator(comments, self.paginete_comments_by, orphans=self.paginete_comments_orphans)
+            page = paginator.get_page(self.request.GET.get('page', 1))
+            is_paginated = paginator.num_pages > 1
+            return page.object_list, page, is_paginated
 
 
 class ArticleCreateView(View):
