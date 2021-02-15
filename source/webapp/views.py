@@ -10,7 +10,7 @@ from webapp.models import Article
 
 
 class IndexView(ListView):
-    template_name = 'index.html'
+    template_name = 'articles/index.html'
     context_object_name = 'articles'
     paginate_by = 5
     paginate_orphans = 2
@@ -36,7 +36,7 @@ class IndexView(ListView):
 
 
 class ArticleView(TemplateView):
-    template_name = 'article.html'
+    template_name = 'articles/article.html'
     paginete_comments_by = 2
     paginete_comments_orphans = 0
 
@@ -58,12 +58,13 @@ class ArticleView(TemplateView):
             page = paginator.get_page(self.request.GET.get('page', 1))
             is_paginated = paginator.num_pages > 1
             return page.object_list, page, is_paginated
+        return comments, None, False
 
 
 class ArticleCreateView(View):
     def get(self, request):
         form = ArticleForm()
-        return render(request, 'article_create.html', context={'form': form})
+        return render(request, 'articles/article_create.html', context={'form': form})
 
     def post(self, request):
         form = ArticleForm(data=request.POST)
@@ -77,11 +78,11 @@ class ArticleCreateView(View):
             article.tags.set(tags)
             return redirect('article', pk=article.pk)
         else:
-            return render(request, 'article_create.html', context={'form': form})
+            return render(request, 'articles/article_create.html', context={'form': form})
 
 
 class ArticleUpdateView(TemplateView):
-    template_name = 'update.html'
+    template_name = 'articles/update.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -114,7 +115,7 @@ class ArticleUpdateView(TemplateView):
 def article_delete_view(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == 'GET':
-        return render(request, 'delete.html', context={'article': article})
+        return render(request, 'articles/delete.html', context={'article': article})
     elif request.method == 'POST':
         article.delete()
         return redirect('index')
