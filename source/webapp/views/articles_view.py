@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.base import View, TemplateView
 from django.utils.timezone import make_naive
 
@@ -35,15 +35,16 @@ class IndexView(ListView):
         return data.order_by('-created_at')
 
 
-class ArticleView(TemplateView):
+class ArticleView(DetailView):
     template_name = 'articles/article.html'
+    model = Article
     paginete_comments_by = 2
     paginete_comments_orphans = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         article = get_object_or_404(Article, pk=kwargs['pk'])
-        comments, page, is_paginated = self.paginater_comments(article)
+        comments, page, is_paginated = self.paginater_comments(self.object)
 
         context['article'] = article
         context['comments'] = comments
