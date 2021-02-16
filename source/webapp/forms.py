@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 
-from webapp.models import Tag, Article, STATUS_CHOICES
+from webapp.models import Tag, Article, STATUS_CHOICES, Comment
 
 default_status = STATUS_CHOICES[0][0]
 BROWSER_DATETIME_FORMAT = '%d-%m-%Y %H:%M'
@@ -19,7 +19,7 @@ def at_least_10(string):
 
 class ArticleForm(forms.ModelForm):
     publish_at = forms.DateTimeField(required=False, label='Время публикации',
-                                     input_formats=['%Y-%m-%d', '%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S',
+                                     input_formats=['%Y-%m-%d', '%d.%m.%Y %H:%M', '%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S',
                                                     '%Y-%m-%dT%H:%M:%S', BROWSER_DATETIME_FORMAT],
                                      widget=XDatepickerWidget)
 
@@ -44,10 +44,16 @@ class ArticleForm(forms.ModelForm):
         return cleaned_data
 
 
-class CommentForm(forms.Form):
-    article = forms.ModelChoiceField(queryset=Article.objects.all(), required=True, label='Статья')
+# class CommentForm(forms.Form):
+#     article = forms.ModelChoiceField(queryset=Article.objects.all(), required=True, label='Статья')
 
 
 class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label='Поиск')
+
+
+class ArticleCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['author', 'text']
 

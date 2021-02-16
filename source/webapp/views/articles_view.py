@@ -1,12 +1,20 @@
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
-from django.views.generic.base import View, TemplateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.utils.timezone import make_naive
 
 from webapp.forms import ArticleForm, BROWSER_DATETIME_FORMAT, SimpleSearchForm
 from webapp.models import Article
+
+
+def mass_article_delete(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('selected', [])
+        if 'delete' in request.POST:
+            Article.objects.filter(id__in=ids).delete()
+    return redirect('index')
 
 
 class IndexView(ListView):
@@ -43,7 +51,7 @@ class ArticleView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article = get_object_or_404(Article, pk=kwargs['pk'])
+        article = get_object_or_404(Article, pk=self.kwargs.get('pk'))
         comments, page, is_paginated = self.paginater_comments(self.object)
 
         context['article'] = article
@@ -62,61 +70,28 @@ class ArticleView(DetailView):
         return comments, None, False
 
 
-class ArticleCreateView(View):
-    def get(self, request):
-        form = ArticleForm()
-        return render(request, 'articles/article_create.html', context={'form': form})
+class ArticleCreateView(CreateView):
+    template_name = 'articles/article_create.html'
+    model = Article
+    form_class = ArticleForm
 
-    def post(self, request):
-        form = ArticleForm(data=request.POST)
-        if form.is_valid():
-            data = {}
-            tags = form.cleaned_data.pop('tags')
-            for key, value in form.cleaned_data.items():
-                if value is not None:
-                    data[key] = value
-            article = Article.objects.create(**data)
-            article.tags.set(tags)
-            return redirect('article', pk=article.pk)
-        else:
-            return render(request, 'articles/article_create.html', context={'form': form})
+    def get_success_url(self):
+        return reverse('article', kwargs={'pk': self.object.pk})
 
 
-class ArticleUpdateView(TemplateView):
+class ArticleUpdateView(UpdateView):
     template_name = 'articles/update.html'
+    model = Article
+    form_class = ArticleForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        article = get_object_or_404(Article, pk=self.kwargs.get('pk'))
-        initial = {}
-        for key in 'title', 'text', 'author', 'status':
-            initial[key] = getattr(article, key)
-        initial['publish_at'] = make_naive(article.publish_at).strftime(BROWSER_DATETIME_FORMAT)
-        initial['tags'] = article.tags.all()
-        form = ArticleForm(initial=initial)
-        context['form'] = form
-        context['article'] = article
-        return context
+    def get_initial(self):
+        return {'publish_at': make_naive(self.object.publish_at).strftime(BROWSER_DATETIME_FORMAT)}
 
-    def post(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, pk=self.kwargs.get('pk'))
-        form = ArticleForm(data=request.POST)
-        if form.is_valid():
-            tags = form.cleaned_data.pop('tags')
-            for key, value in form.cleaned_data.items():
-                if value is not None:
-                    setattr(article, key, value)
-            article.save()
-            article.tags.set(tags)
-            return redirect('article', pk=article.pk)
-        else:
-            return self.render_to_response({'form': form, 'article': article})
+    def get_success_url(self):
+        return reverse('article', kwargs={'pk': self.object.pk})
 
 
-def article_delete_view(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    if request.method == 'GET':
-        return render(request, 'articles/delete.html', context={'article': article})
-    elif request.method == 'POST':
-        article.delete()
-        return redirect('index')
+class ArticleDeleteView(DeleteView):
+    template_name = 'articles/delete.html'
+    model = Article
+    success_url = reverse_lazy('index')

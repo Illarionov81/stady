@@ -23,6 +23,7 @@
         </p>
         <hr>
         <h3>Комментарии:</h3>
+        <a href="{% url 'comment_create' article.pk %}" >Добавить комментарий</a>
         {% if is_paginated %}
             {% include 'partial/pagination.html' %}
         {% endif %}
@@ -31,6 +32,8 @@
                 <div>
                     <h4>{{ comment.author }} ({{ comment.created_at }})</h4>
                     <div class="pre">{{ comment.text }}</div>
+                    <p><a href="{% url 'comment_update' comment.pk %}">Update</a></p>
+                    <p><a href="{% url 'comment_delete' comment.pk %}">Delete</a></p>
                 </div>
             </div>
         {% empty %}

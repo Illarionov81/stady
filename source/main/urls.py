@@ -18,13 +18,19 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from webapp.views import IndexView, ArticleCreateView, ArticleView, ArticleUpdateView, article_delete_view
+from webapp.views import IndexView, ArticleCreateView, ArticleView, ArticleUpdateView, ArticleDeleteView, \
+    ArticleCommentCreateView, mass_article_delete, CommentUpdateView, CommentDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
+    path('articles/mass-delete/', mass_article_delete, name='article_mass_delete'),
     path('articles/add/', ArticleCreateView.as_view(), name='article_add'),
     path('article/<int:pk>/', ArticleView.as_view(), name='article'),
     path('article/<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_update'),
-    path('article/<int:pk>/delete', article_delete_view, name='article_delete')
+    path('article/<int:pk>/delete', ArticleDeleteView.as_view(), name='article_delete'),
+
+    path('article/<int:pk>/add-comment', ArticleCommentCreateView.as_view(), name='comment_create'),
+    path('comment/<int:pk>/update', CommentUpdateView.as_view(), name='comment_update'),
+    path('comment/<int:pk>/delete', CommentDeleteView.as_view(), name='comment_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
