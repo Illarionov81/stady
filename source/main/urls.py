@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -33,4 +33,7 @@ urlpatterns = [
     path('article/<int:pk>/add-comment', ArticleCommentCreateView.as_view(), name='comment_create'),
     path('comment/<int:pk>/update', CommentUpdateView.as_view(), name='comment_update'),
     path('comment/<int:pk>/delete', CommentDeleteView.as_view(), name='comment_delete'),
+
+    path('', include('accounts.urls'))
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
