@@ -25,7 +25,7 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'text', 'author', 'status', 'publish_at', 'tags']
+        fields = ['title', 'text', 'status', 'publish_at', 'tags']
         # widgets = {'publish_at': forms.DateTimeInput(attrs={'type': 'datetime-local'})}
         widgets = {'tags': forms.CheckboxSelectMultiple}
 
@@ -34,11 +34,8 @@ class ArticleForm(forms.ModelForm):
         errors = []
         text = cleaned_data.get('text')
         title = cleaned_data.get('title')
-        author = cleaned_data.get('author')
         if text and title and text == title:
             errors.append(ValidationError("Text of the article should not duplicate it's title!"))
-        if title and author and title == author:
-            errors.append(ValidationError("You should not write about yourself! It's a spam!"))
         if errors:
             raise ValidationError(errors)
         return cleaned_data
@@ -55,5 +52,5 @@ class SimpleSearchForm(forms.Form):
 class ArticleCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['author', 'text']
+        fields = ['text']
 
