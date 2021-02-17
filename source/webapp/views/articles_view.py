@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
@@ -9,6 +11,7 @@ from webapp.forms import ArticleForm, BROWSER_DATETIME_FORMAT, SimpleSearchForm
 from webapp.models import Article
 
 
+@login_required
 def mass_article_delete(request):
     if request.method == 'POST':
         ids = request.POST.getlist('selected', [])
@@ -70,7 +73,7 @@ class ArticleView(DetailView):
         return comments, None, False
 
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     template_name = 'articles/article_create.html'
     model = Article
     form_class = ArticleForm
