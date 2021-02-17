@@ -34,6 +34,6 @@ urlpatterns = [
     path('comment/<int:pk>/update', CommentUpdateView.as_view(), name='comment_update'),
     path('comment/<int:pk>/delete', CommentDeleteView.as_view(), name='comment_delete'),
 
-    path('', include('accounts.urls'))
+    path('accounts/', include('accounts.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
