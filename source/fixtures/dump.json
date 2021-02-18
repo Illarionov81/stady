@@ -5,20 +5,15 @@
   "fields": {
     "title": "First article",
     "text": " Statr learn django again updated",
-    "author": "Me",
+    "author": 1,
+    "status": "new",
     "created_at": "2021-02-04T07:32:12.286Z",
-    "updated_at": "2021-02-04T11:00:37.438Z"
-  }
-},
-{
-  "model": "webapp.article",
-  "pk": 2,
-  "fields": {
-    "title": "second",
-    "text": "sekond article",
-    "author": "Unknown",
-    "created_at": "2021-02-04T07:47:05.485Z",
-    "updated_at": "2021-02-04T07:47:05.485Z"
+    "updated_at": "2021-02-04T13:30:24.398Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": [
+      1,
+      2
+    ]
   }
 },
 {
@@ -27,9 +22,12 @@
   "fields": {
     "title": "\u0421\u043f\u043e\u0440\u0442",
     "text": "jljnfzljfvzljnvlzjdfnvjzn\r\nzdfvlkzjnv zjv\r\nzdfjvzkdfjbzkj",
-    "author": "Me",
+    "author": 1,
+    "status": "rejected",
     "created_at": "2021-02-04T08:00:18.446Z",
-    "updated_at": "2021-02-04T08:00:18.446Z"
+    "updated_at": "2021-02-04T13:30:24.401Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
   }
 },
 {
@@ -38,20 +36,12 @@
   "fields": {
     "title": "Therd",
     "text": "jxcnv  jzdf;j ;zjdf ;zj z;djf\r\nz;dkjfnbn\r\ndfjznd;jnb;",
-    "author": "\u042f",
+    "author": 1,
+    "status": "new",
     "created_at": "2021-02-04T08:33:40.378Z",
-    "updated_at": "2021-02-04T08:33:40.378Z"
-  }
-},
-{
-  "model": "webapp.article",
-  "pk": 5,
-  "fields": {
-    "title": "Serfing",
-    "text": ",kjn",
-    "author": "Me",
-    "created_at": "2021-02-04T08:54:20.451Z",
-    "updated_at": "2021-02-04T08:54:20.451Z"
+    "updated_at": "2021-02-04T13:30:24.401Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
   }
 },
 {
@@ -60,9 +50,12 @@
   "fields": {
     "title": "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438",
     "text": " fzf",
-    "author": "me again",
+    "author": 1,
+    "status": "new",
     "created_at": "2021-02-04T08:58:52.894Z",
-    "updated_at": "2021-02-04T08:58:52.894Z"
+    "updated_at": "2021-02-04T13:30:24.402Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
   }
 },
 {
@@ -71,9 +64,12 @@
   "fields": {
     "title": "sfdvs",
     "text": "form",
-    "author": "zf zd xgbsb",
+    "author": 1,
+    "status": "moderated",
     "created_at": "2021-02-04T11:29:33.290Z",
-    "updated_at": "2021-02-04T12:15:55.016Z"
+    "updated_at": "2021-02-04T13:30:24.402Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
   }
 },
 {
@@ -82,9 +78,331 @@
   "fields": {
     "title": "\u0421\u043f\u043e\u0440\u0442",
     "text": "mnj;;zfjknvnffffffff\r\nfffffffffffffffffffffffffffff\r\nvc",
-    "author": "Me",
+    "author": 1,
+    "status": "new",
     "created_at": "2021-02-04T12:20:57.282Z",
-    "updated_at": "2021-02-04T12:20:57.282Z"
+    "updated_at": "2021-02-04T13:30:24.403Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 12,
+  "fields": {
+    "title": "Title",
+    "text": "Text",
+    "author": 1,
+    "status": "rejected",
+    "created_at": "2021-02-04T13:41:30.473Z",
+    "updated_at": "2021-02-04T13:41:30.473Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 14,
+  "fields": {
+    "title": "\u0421\u043f\u043e\u0440\u0442",
+    "text": "NNNNNNNNNNNNnnnnnnnnnnnnnnnnnnnnnnnnnn",
+    "author": 1,
+    "status": "moderated",
+    "created_at": "2021-02-04T17:40:42.712Z",
+    "updated_at": "2021-02-04T17:40:42.712Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 17,
+  "fields": {
+    "title": "\u0421\u043f\u043e\u0440\u0442",
+    "text": "kkkkkkkkkkkk",
+    "author": 1,
+    "status": "new",
+    "created_at": "2021-02-04T17:52:15.094Z",
+    "updated_at": "2021-02-04T17:52:15.094Z",
+    "publish_at": "2021-02-05T06:30:05.275Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 18,
+  "fields": {
+    "title": "\u0421\u043f\u043e\u0440\u0442",
+    "text": "dsrtbz",
+    "author": 1,
+    "status": "moderated",
+    "created_at": "2021-02-05T06:45:13.807Z",
+    "updated_at": "2021-02-05T07:48:42.018Z",
+    "publish_at": "2021-02-28T12:02:00Z",
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 19,
+  "fields": {
+    "title": "Serfing",
+    "text": "vdxfbb",
+    "author": 1,
+    "status": "moderated",
+    "created_at": "2021-02-05T07:49:24.087Z",
+    "updated_at": "2021-02-05T07:49:24.087Z",
+    "publish_at": "2021-02-19T07:48:00Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 20,
+  "fields": {
+    "title": "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438",
+    "text": "kjhblhb",
+    "author": 1,
+    "status": "moderated",
+    "created_at": "2021-02-05T08:37:39.705Z",
+    "updated_at": "2021-02-05T08:37:39.705Z",
+    "publish_at": "2021-02-12T08:37:00Z",
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 21,
+  "fields": {
+    "title": "\u0414\u0435\u0442\u0435\u043a\u0442\u0438\u0432\u043d\u044b\u0435 \u0438\u0441\u0442\u043e\u0440\u0438\u0438.",
+    "text": "vvvvvvvvvvvvvvvvvvvv\r\nvvvvvvvvvvvvv\r\n              vvvvvvvvvvvvv",
+    "author": 1,
+    "status": "new",
+    "created_at": "2021-02-05T09:48:11.805Z",
+    "updated_at": "2021-02-05T09:48:11.805Z",
+    "publish_at": "2021-02-05T09:48:11.805Z",
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 22,
+  "fields": {
+    "title": "vsvvdvsvsv",
+    "text": "svv",
+    "author": 1,
+    "status": "new",
+    "created_at": "2021-02-05T12:31:57.146Z",
+    "updated_at": "2021-02-05T12:31:57.146Z",
+    "publish_at": "2021-02-05T12:31:57.145Z",
+    "tags": []
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 23,
+  "fields": {
+    "title": "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438",
+    "text": "kjnfjknv zdfznkn",
+    "author": 1,
+    "status": "moderated",
+    "created_at": "2021-02-05T12:53:41.396Z",
+    "updated_at": "2021-02-05T12:53:41.396Z",
+    "publish_at": "2021-03-13T12:53:00Z",
+    "tags": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 24,
+  "fields": {
+    "title": "\u041a\u0440\u0438\u043c\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0435 \u043d\u043e\u0432\u043e\u0441\u0442\u0438",
+    "text": "dsfvszv",
+    "author": 1,
+    "status": "new",
+    "created_at": "2021-02-15T16:19:31.239Z",
+    "updated_at": "2021-02-15T16:19:31.239Z",
+    "publish_at": "2021-02-04T16:00:00Z",
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 25,
+  "fields": {
+    "title": "\u041d\u043e\u0432\u0430\u044f \u0441\u0442\u0430\u0442\u044c\u044f \u0441 \u043d\u043e\u0432\u044b\u043c \u0430\u0432\u0442\u043e\u0440\u043e\u043c",
+    "text": "\u041d\u043e\u0432\u044b\u0439 \u0430\u0432\u0442\u043e\u0440",
+    "author": 4,
+    "status": "moderated",
+    "created_at": "2021-02-17T13:54:26.218Z",
+    "updated_at": "2021-02-17T13:54:26.218Z",
+    "publish_at": "2021-02-27T13:54:00Z",
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 1,
+  "fields": {
+    "article": 12,
+    "text": "Comment 1",
+    "author": 1,
+    "created_at": "2021-02-04T13:41:46.893Z",
+    "updated_at": "2021-02-04T13:41:46.893Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 2,
+  "fields": {
+    "article": 12,
+    "text": "Comment 2",
+    "author": 1,
+    "created_at": "2021-02-04T13:41:57.448Z",
+    "updated_at": "2021-02-04T13:41:57.448Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 3,
+  "fields": {
+    "article": 1,
+    "text": "kmn'km 'xdk \r\n'zkdfm zdk  kdfzdk 'km'km \r\nkfffffffffffffffffffffffcccccccccccccccccccc",
+    "author": 1,
+    "created_at": "2021-02-05T09:34:00.339Z",
+    "updated_at": "2021-02-05T09:34:00.339Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 5,
+  "fields": {
+    "article": 23,
+    "text": "\u043b\u043e\u0430\u043c\u044f\u043e\u0432\u043c\u0430\u043e\u0442\u044f\u0432\u0444\u0436\u043c\u043e\u0442\u0444\u0436\u043e\u043c\u0442 \u043c\u0436\u0444\u043e\u0432 \u043c\u0436\u043e\u0444 \u043c\u0436\u043e\u0444 \u043c\u0436\u043e\u0442\u0444\u0436\u043c\u043e\u0442",
+    "author": 1,
+    "created_at": "2021-02-14T16:43:57.082Z",
+    "updated_at": "2021-02-14T16:43:57.082Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 6,
+  "fields": {
+    "article": 23,
+    "text": "zfbzdfb",
+    "author": 1,
+    "created_at": "2021-02-14T18:29:13.584Z",
+    "updated_at": "2021-02-14T18:29:13.584Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 7,
+  "fields": {
+    "article": 23,
+    "text": "zsdvzsdv\r\nfdvzsdv\r\nzsdvzSv",
+    "author": 1,
+    "created_at": "2021-02-14T18:29:23.565Z",
+    "updated_at": "2021-02-14T18:29:23.565Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 8,
+  "fields": {
+    "article": 23,
+    "text": "zsdvdzsv zsv",
+    "author": 1,
+    "created_at": "2021-02-14T18:29:31.744Z",
+    "updated_at": "2021-02-14T18:29:31.744Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 9,
+  "fields": {
+    "article": 23,
+    "text": "z z dfsvz Ffewsa",
+    "author": 1,
+    "created_at": "2021-02-14T18:29:40.645Z",
+    "updated_at": "2021-02-14T18:29:40.645Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 10,
+  "fields": {
+    "article": 23,
+    "text": "lknknknknn",
+    "author": 1,
+    "created_at": "2021-02-15T14:31:14.434Z",
+    "updated_at": "2021-02-15T14:31:14.434Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 11,
+  "fields": {
+    "article": 19,
+    "text": "jnlkn",
+    "author": 1,
+    "created_at": "2021-02-15T14:31:28.256Z",
+    "updated_at": "2021-02-15T14:31:28.256Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 12,
+  "fields": {
+    "article": 25,
+    "text": "\u043e\u0440\u043f\u043c\u043b\u043f\u043c\u043b",
+    "author": 4,
+    "created_at": "2021-02-17T13:54:38.226Z",
+    "updated_at": "2021-02-17T13:54:38.226Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Memes",
+    "created_at": "2021-02-04T15:23:35.945Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Python",
+    "created_at": "2021-02-04T17:51:38.135Z"
+  }
+},
+{
+  "model": "webapp.tag",
+  "pk": 3,
+  "fields": {
+    "name": "info",
+    "created_at": "2021-02-05T11:11:52.580Z"
   }
 }
 ]
