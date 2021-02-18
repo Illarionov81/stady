@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать пользователя{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url "accounts:detail" user_obj.pk %}">Назад</a></li>
+    <li><a href="#">Смена пароля</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Поменять личные данные</h1>
+    {% url 'accounts:change' user_obj.pk article.pk as action_url %}
+    {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Update'%}
+{% endblock %}

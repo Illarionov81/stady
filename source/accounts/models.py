@@ -7,9 +7,6 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='user_pic', null=True, blank=True, verbose_name='Аватар')
     objects = UserManager()
 
-    # def __str__(self):
-    #     return '%s' % self.pk
-
     def image_img(self):
         if self.avatar:
             from django.utils.safestring import mark_safe

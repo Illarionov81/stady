@@ -9,7 +9,7 @@ BROWSER_DATETIME_FORMAT = '%d-%m-%Y %H:%M'
 
 
 class XDatepickerWidget(forms.TextInput):
-    template_name = 'widgets/xdatepicker_widget.html'
+    template_name = 'widgets/xdate_time_picker_widget.html'
 
 
 def at_least_10(string):
