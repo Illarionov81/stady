@@ -3,9 +3,10 @@ from django.shortcuts import render
 import json
 from datetime import datetime
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
 
-@csrf_exempt
+
+@ensure_csrf_cookie
 def json_echo_view(request, *args, **kwargs):
     answer = {
         'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
