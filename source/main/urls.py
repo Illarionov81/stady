@@ -23,6 +23,7 @@ from webapp.views import IndexView, ArticleCreateView, ArticleView, ArticleUpdat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('api_1')),
     path('', IndexView.as_view(), name='index'),
     path('articles/mass-delete/', mass_article_delete, name='article_mass_delete'),
     path('articles/add/', ArticleCreateView.as_view(), name='article_add'),
