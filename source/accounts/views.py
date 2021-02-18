@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -54,3 +56,11 @@ class UserChangeView(UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:detail', kwargs={'pk': self.object.pk})
+
+
+class PasswordView(PasswordChangeView):
+    template_name = 'password_change.html'
+
+    def get_success_url(self):
+        return reverse('accounts:detail', kwargs={'pk': self.request.user.pk})
+
