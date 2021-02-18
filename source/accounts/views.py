@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from accounts.forms import MyUserCreationForm, UserChangeForm, PasswordChangeForm
 from accounts.models import User
@@ -46,21 +46,27 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         return super().get_context_data(**kwargs)
 
 
-class UserChangeView(UpdateView):
+class UserChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
     context_object_name = 'user_obj'
     template_name = 'user_change.html'
 
+    def test_func(self):
+        return self.request.user == self.get_object()
+
     def get_success_url(self):
         return reverse('accounts:detail', kwargs={'pk': self.object.pk})
 
 
-class UserPasswordChangeView(UpdateView):
+class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     template_name = 'password_change.html'
     form_class = PasswordChangeForm
     context_object_name = 'user_obj'
+
+    def test_func(self):
+        return self.request.user == self.get_object()
 
     def get_success_url(self):
         return reverse('accounts:login')
