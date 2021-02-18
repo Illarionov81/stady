@@ -5,7 +5,7 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def json_echo_view(request, *args, **kwargs):
     answer = {
         'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
