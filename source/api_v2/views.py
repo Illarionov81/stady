@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, get_object_or_404
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly, DjangoModelPermissions, AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet, ReadOnlyModelViewSet
 
+from api_v2.permissions import GetModelPermissions
 from api_v2.serializers import ArticleSerializers, UserSerializer
 from webapp.models import Article
 
@@ -14,6 +16,13 @@ class UserDetail(ReadOnlyModelViewSet):
 
 class ArticleViewSet(ViewSet):
     queryset = Article.objects.all()
+    # permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            return [GetModelPermissions()]
+        else:
+            return [AllowAny()]
 
     def list(self, request):
         objects = Article.objects.all()
