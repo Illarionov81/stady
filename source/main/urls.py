@@ -23,7 +23,9 @@ from webapp.views import IndexView, ArticleCreateView, ArticleView, ArticleUpdat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-1/', include('api_1.urls')),
+    path('api/v1/', include('api_1.urls')),
+    path('api/v2/', include('api_v2.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', IndexView.as_view(), name='index'),
     path('articles/mass-delete/', mass_article_delete, name='article_mass_delete'),
     path('articles/add/', ArticleCreateView.as_view(), name='article_add'),
