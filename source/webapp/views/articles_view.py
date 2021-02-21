@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -34,7 +34,10 @@ class IndexView(ListView):
         return super().get_context_data(object_list=object_list, **kwargs)
 
     def get_queryset(self):
-        data = Article.objects.all()
+        data = Article.objects.all()\
+            .select_related('author')\
+            .prefetch_related('tags')\
+            .annotate(comment_count=Count('comments'))
         is_admin = self.request.GET.get('is_admin', None)
         if not is_admin:
             data = data.filter(status='moderated')
@@ -42,7 +45,7 @@ class IndexView(ListView):
         if form.is_valid():
             search = form.cleaned_data['search']
             if search:
-                data = data.filter(Q(title__icontains=search) | Q(author__icontains=search))
+                data = data.filter(Q(title__icontains=search) | Q(author__username__icontains=search))
         return data.order_by('-created_at')
 
 

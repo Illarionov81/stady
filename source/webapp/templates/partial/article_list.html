@@ -12,9 +12,17 @@
             <label for="selected-{{ article.pk }}">Select:</label>
             <input name="selected" id="selected-{{ article.pk }}" type="checkbox" value="{{ article.pk }}">
         </p>
-        <p>статус: ({{ article.status }} | {{ article.get_status_display }})</p>
+        <p>статус: ({{ article.status }} | {{ article.get_status_display }}) ({{ article.comment_count }})</p>
         <p>{{ article.author }} | {{ article.created_at|date:'d-m-Y H:i'  }} | Дата публикации: {{ article.publish_at|date:'d-m-Y H:i' }}</p>
         <p>{{ article.text }}</p>
+        <p>Тэги:
+        {% for tag in article.tags.all %}
+            {{ tag }}
+            {% if not forloop.last %},{% endif %}
+        {% empty %}
+            <p>Тэгов нет.</p>
+        {% endfor %}
+        </p>
         <p><a href="{% url 'article_update' article.pk %}">Update</a></p>
         <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>
         </div>

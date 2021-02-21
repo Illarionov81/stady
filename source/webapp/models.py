@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils import timezone
+from main import settings
 
 
 STATUS_CHOICES = [
@@ -15,7 +16,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False, verbose_name='Заголовок',
                              validators=[MinLengthValidator(10)])
     text = models.TextField(max_length=3000, null=False, blank=False, verbose_name='Текст')
-    author = models.ForeignKey(get_user_model(), on_delete=models.SET_DEFAULT, default=1, related_name='articles',
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, related_name='articles',
                                verbose_name='Автор')
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='new', verbose_name='Модерация')
     tags = models.ManyToManyField('webapp.Tag', related_name='articles', blank=True)
