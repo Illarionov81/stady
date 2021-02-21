@@ -37,6 +37,7 @@ urlpatterns = [
     path('comment/<int:pk>/update', CommentUpdateView.as_view(), name='comment_update'),
     path('comment/<int:pk>/delete', CommentDeleteView.as_view(), name='comment_delete'),
 
-    path('accounts/', include('accounts.urls'))
+    path('accounts/', include('accounts.urls')),
+    path('silk/', include('silk.urls', namespace='silk'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
