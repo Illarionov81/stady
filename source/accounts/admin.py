@@ -21,7 +21,7 @@ class MyUserInline(UserAdmin):
         (_('Permissions'), {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined', 'image_img', 'birth_date',)}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined', 'image_img', 'avatar', 'birth_date',)}),
     )
 
 

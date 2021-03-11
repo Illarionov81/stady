@@ -24,7 +24,7 @@ class IndexView(ListView):
     template_name = 'articles/index.html'
     context_object_name = 'articles'
     paginate_by = 5
-    paginate_orphans = 2
+    paginate_orphans = 0
 
     def get_context_data(self, *, object_list=None, **kwargs):
         form = SimpleSearchForm(data=self.request.GET)
